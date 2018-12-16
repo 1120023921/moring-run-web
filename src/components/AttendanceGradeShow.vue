@@ -6,7 +6,7 @@
     </div>
     <Group v-for="(value,key) in gradeList" :key="key" :title="key">
       <Cell style="line-height:0px;padding: 5px 15px;" v-for="(item,index) in value" :key="index" :title="item.itemName"
-            :value="transferTime(item.grade,item.itemName)"></Cell>
+            :value="item.grade"></Cell>
     </Group>
   </div>
 </template>
@@ -30,7 +30,7 @@
   }]
 
   export default {
-    name: "GradeShow",
+    name: "AttendanceGradeShow",
     data() {
       return {
         swiperList: swiperList,
@@ -38,26 +38,19 @@
       }
     },
     methods: {
-      getGradeByJobNumberAndType() {
+      getAttendanceVo() {
         let self = this
-        API.getGradeByJobNumberAndType(sessionStorage.getItem('jobNumber'), this.$route.query.type)
+        API.getAttendanceVo(sessionStorage.getItem('jobNumber'), this.$route.query.type)
           .then(res => {
             self.gradeList = res.data.data
           })
           .catch(err => {
             console.log(err)
           });
-      },
-      transferTime(grade, itemName) {
-        if (itemName.indexOf("跑") > -1) {
-          return grade.substring(0, 1) + '\'' + grade.substring(1, 3) + '\'\'' + grade.substring(3, 5)
-        } else {
-          return grade
-        }
       }
     },
     mounted() {
-      this.getGradeByJobNumberAndType()
+      this.getAttendanceVo()
     },
     components: {
       Swiper, CellBox, Cell, Group

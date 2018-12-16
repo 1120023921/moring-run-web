@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Index'
 import GradeShow from '@/components/GradeShow'
+import AttendanceGradeShow from '@/components/AttendanceGradeShow'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/gradeShow',
       name: 'GradeShow',
       component: GradeShow
+    },
+    {
+      path: '/attendanceGradeShow',
+      name: 'AttendanceGradeShow',
+      component: AttendanceGradeShow
     }
   ]
 })

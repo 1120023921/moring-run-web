@@ -5,7 +5,8 @@
       体育测试成绩查询
     </div>
     <grid :cols=3>
-      <grid-item v-for="grid in gridList" @click.native="gradeShow(grid.type)" :key="grid.link" :label="grid.label">
+      <grid-item v-for="grid in gridList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
+                 :label="grid.label">
         <img slot="icon" src="../assets/logo.png">
       </grid-item>
     </grid>
@@ -29,16 +30,22 @@
     img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw50iwj20ff0aaaci.jpg', // 404
     title: '送你一次旅行'
   }]
-  const gridList = [{url: '/', label: '体教考勤', src: '../assets/logo.png', link: "http://www.cc.com"}, {
+  const gridList = [{
+    url: '/',
+    label: '体教考勤',
+    type: '01',
+    src: '../assets/logo.png',
+    link: "AttendanceGradeShow"
+  }, {
     label: '体质测试',
     type: '02',
     src: '../assets/logo.png',
-    link: "/gradeShow"
-  }, {url: '/gradeShow', label: '体质测试', src: '../assets/logo.png'}, {
-    url: '/',
-    label: '体质测试',
+    link: "GradeShow"
+  }, {
+    label: '技能考评',
+    type: '03',
     src: '../assets/logo.png',
-    link: "http://www.qq.com"
+    link: "GradeShow"
   }]
   export default {
     name: 'Index',
@@ -49,11 +56,12 @@
       }
     },
     methods: {
-      gradeShow(type) {
+      gradeShow(type, link, title) {
         this.$router.push({
-          name: 'GradeShow',
+          name: link,
           query: {
-            type: type
+            type: type,
+            title: title
           }
         })
       }

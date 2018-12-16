@@ -69,7 +69,7 @@ axios.interceptors.response.use(response => {
   return Promise.resolve(error.response)
 })
 
-axios.defaults.baseURL = '/api'
+axios.defaults.baseURL = '/api/wx/auth/wxbe3c1744c0f71ab4'
 //设置默认请求头
 axios.defaults.headers = {
   'X-Requested-With': 'XMLHttpRequest'
