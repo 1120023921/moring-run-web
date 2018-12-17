@@ -74,7 +74,7 @@ axios.defaults.baseURL = '/api/wx/auth/wxbe3c1744c0f71ab4'
 axios.defaults.headers = {
   'X-Requested-With': 'XMLHttpRequest'
 }
-axios.defaults.timeout = 10000
+axios.defaults.timeout = 50000
 
 export default {
   //get请求

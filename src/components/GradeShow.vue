@@ -50,9 +50,9 @@
       },
       transferTime(grade, itemName) {
         if (itemName.indexOf("跑") > -1) {
-          return grade.substring(0, 1) + '\'' + grade.substring(1, 3) + '\'\'' + grade.substring(3, 5)
+          return grade.substring(3, 4) + '\'' + grade.substring(4, 6) + '\'\'' + grade.substring(6, 8)
         } else {
-          return grade
+          return parseFloat(grade)
         }
       }
     },

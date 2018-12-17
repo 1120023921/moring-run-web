@@ -6,7 +6,8 @@
     </div>
     <Group v-for="(value,key) in gradeList" :key="key" :title="key">
       <Cell style="line-height:0px;padding: 5px 15px;" v-for="(item,index) in value" :key="index" :title="item.itemName"
-            :value="item.grade"></Cell>
+            :value="item.grade" is-link
+            @click.native="getAttendanceGradeDetail(item.semesterId,item.type,item.itemNumber)"></Cell>
     </Group>
   </div>
 </template>
@@ -14,6 +15,7 @@
 <script>
   import {Swiper, CellBox, Cell, Group} from 'vux'
   import API from '@/utils/api'
+  import AttendanceGradeDetailShow from '@/components/AttendanceGradeDetailShow'
 
   const swiperList = [{
     url: 'javascript:',
@@ -47,13 +49,29 @@
           .catch(err => {
             console.log(err)
           });
+      },
+      getAttendanceGradeDetail(semesterId, type, itemNumber) {
+        let self = this
+        API.getAttendanceGradeDetail(sessionStorage.getItem('jobNumber'), type, itemNumber, semesterId)
+          .then(res => {
+            console.log(res.data)
+            self.$router.push({
+              name: 'AttendanceGradeDetailShow',
+              params: {
+                data: res.data
+              }
+            })
+          })
+          .catch(err => {
+            console.log(err)
+          });
       }
     },
     mounted() {
       this.getAttendanceVo()
     },
     components: {
-      Swiper, CellBox, Cell, Group
+      Swiper, CellBox, Cell, Group, AttendanceGradeDetailShow
     }
   }
 </script>
