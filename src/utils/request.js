@@ -1,5 +1,6 @@
 //引入axios
 import axios from 'axios'
+import qs from 'qs'
 
 let cancel, promiseArr = {}
 const CancelToken = axios.CancelToken;
@@ -69,7 +70,7 @@ axios.interceptors.response.use(response => {
   return Promise.resolve(error.response)
 })
 
-axios.defaults.baseURL = '/api/wx/auth/wxbe3c1744c0f71ab4'
+axios.defaults.baseURL = '/api'
 //设置默认请求头
 axios.defaults.headers = {
   'X-Requested-With': 'XMLHttpRequest'
@@ -78,7 +79,7 @@ axios.defaults.timeout = 50000
 
 export default {
   //get请求
-  get(url, param) {
+  getJson(url, param) {
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',
@@ -93,12 +94,28 @@ export default {
     })
   },
   //post请求
-  post(url, param) {
+  postJson(url, param) {
     return new Promise((resolve, reject) => {
       axios({
         method: 'post',
         url,
         data: param,
+        cancelToken: new CancelToken(c => {
+          cancel = c
+        })
+      }).then(res => {
+        resolve(res)
+      })
+    })
+  },
+  //patch请求
+  patch(url, param) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'patch',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        url,
+        data: qs.stringify(param),
         cancelToken: new CancelToken(c => {
           cancel = c
         })

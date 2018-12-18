@@ -54,11 +54,10 @@
         let self = this
         API.getAttendanceGradeDetail(sessionStorage.getItem('jobNumber'), type, itemNumber, semesterId)
           .then(res => {
-            console.log(res.data)
             self.$router.push({
               name: 'AttendanceGradeDetailShow',
               params: {
-                data: res.data
+                data: res.data.data
               }
             })
           })

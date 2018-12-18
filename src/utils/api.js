@@ -1,29 +1,33 @@
 import axios from '@/utils/request'
-import qs from 'qs'
+import CONSTANT from '@/utils/constant'
 
 const API = {
   //获取体质测试成绩
   getGradeByJobNumberAndType(jobNumber, type) {
-    return axios.post('/grade/getGradeByJobNumberAndType', {
+    return axios.postJson(CONSTANT.wxUrl + '/grade/getGradeByJobNumberAndType', {
       jobNumber: jobNumber,
       type: type
     })
   },
   //获取体教考勤成绩
   getAttendanceVo(jobNumber, type) {
-    return axios.post('/grade/getAttendanceVo', {
+    return axios.postJson(CONSTANT.wxUrl + '/grade/getAttendanceVo', {
       jobNumber: jobNumber,
       type: type
     })
   },
   //获取体教考勤成绩详情
   getAttendanceGradeDetail(jobNumber, type, itemNumber, semesterId) {
-    return axios.post('/grade/getAttendanceGradeDetail', {
+    return axios.postJson(CONSTANT.wxUrl + '/grade/getAttendanceGradeDetail', {
       jobNumber: jobNumber,
       type: type,
       itemNumber: itemNumber,
       semesterId: semesterId
     })
+  },
+  //绑定用户信息
+  addUserOpenId(param) {
+    return axios.patch('/user/addUserOpenId', param)
   }
 }
 

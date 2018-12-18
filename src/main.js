@@ -3,6 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import  { ToastPlugin } from 'vux'
+
+Vue.use(ToastPlugin)
+// 默认参数
+Vue.use(ToastPlugin, {position: 'middle'})
 
 Vue.config.productionTip = false
 

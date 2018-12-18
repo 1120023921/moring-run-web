@@ -5,7 +5,7 @@
       {{$route.query.title}}
     </div>
     <Group v-for="(value,key) in gradeList" :key="key" :title="key">
-      <Cell style="line-height:0px;padding: 5px 15px;" v-for="(item,index) in value" :key="index" :title="item.itemName"
+      <Cell v-for="(item,index) in value" :key="index" :title="item.itemName"
             :value="transferTime(item.grade,item.itemName)"></Cell>
     </Group>
   </div>
@@ -66,5 +66,8 @@
 </script>
 
 <style scoped>
-
+  .weui-cell {
+    line-height: 0px;
+    padding: 5px 15px;
+  }
 </style>
