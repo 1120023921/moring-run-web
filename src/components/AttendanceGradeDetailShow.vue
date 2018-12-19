@@ -8,13 +8,15 @@
       <thead>
       <tr style="background-color: #F7F7F7">
         <th>序号</th>
-        <th>考勤机编号</th>
+        <th>有效次数</th>
+        <th>考勤机</th>
         <th>刷卡时间</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="(item,index) in gradeList" :key="item.id">
         <td>{{gradeList.length-index}}</td>
+        <td>{{item.grade}}</td>
         <td>{{item.deviceNumber}}</td>
         <td>{{item.gradeCreateTime}}</td>
       </tr>
