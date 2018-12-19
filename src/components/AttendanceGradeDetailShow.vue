@@ -4,15 +4,31 @@
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       {{title}}
     </div>
-    <div>
-      <Panel :list="gradeList" type="4"></Panel>
-    </div>
+    <XTable :cell-bordered="false" style="background-color:#fff;">
+      <thead>
+      <tr style="background-color: #F7F7F7">
+        <th>序号</th>
+        <th>考勤机编号</th>
+        <th>刷卡时间</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(item,index) in gradeList" :key="item.id">
+        <td>{{gradeList.length-index}}</td>
+        <td>{{item.deviceNumber}}</td>
+        <td>{{item.gradeCreateTime}}</td>
+      </tr>
+      </tbody>
+    </XTable>
+    <!--<div>-->
+    <!--<Panel :list="gradeList" type="4"></Panel>-->
+    <!--</div>-->
   </div>
 </template>
 
 <script>
-  import {Swiper, CellBox, Cell, Group, Panel} from 'vux'
-  import API from '@/utils/api'
+  import {Swiper, CellBox, Cell, Group, Panel, XTable} from 'vux'
+  import utils from '@/utils/utils'
 
   const swiperList = [{
     url: 'javascript:',
@@ -39,27 +55,14 @@
     },
     methods: {
       init() {
-        let data = this.$route.params.data;
-        this.title = data[0].itemName
-        for (let i = 0; i < data.length; i++) {
-          let item = {
-            title: data[i].itemName,
-            desc: data[i].grade,
-            meta: {
-              source: '考勤机：' + data[i].deviceNumber,
-              date: '时间：' + data[i].gradeCreateTime,
-              // other: '学期：' + data[i].semester
-            }
-          }
-          this.gradeList.push(item)
-        }
+        this.gradeList = this.$route.params.data.sort(utils.compare("gradeCreateTime"));
       }
     },
     mounted() {
       this.init()
     },
     components: {
-      Swiper, CellBox, Cell, Group, Panel
+      Swiper, CellBox, Cell, Group, Panel, XTable
     }
   }
 </script>
