@@ -57,6 +57,7 @@
     },
     methods: {
       init() {
+        this.title = this.$route.params.title
         this.gradeList = this.$route.params.data.sort(utils.compare("gradeCreateTime"));
       }
     },

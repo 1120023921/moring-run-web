@@ -7,7 +7,7 @@
     <Group v-for="(value,key) in gradeList" :key="key" :title="key">
       <Cell style="line-height:0px;padding: 5px 15px;" v-for="(item,index) in value" :key="index" :title="item.itemName"
             :value="item.grade" is-link
-            @click.native="getAttendanceGradeDetail(item.semesterId,item.type,item.itemNumber)"></Cell>
+            @click.native="getAttendanceGradeDetail(item.semesterId,item.type,item.itemNumber,item.itemName)"></Cell>
     </Group>
   </div>
 </template>
@@ -50,14 +50,15 @@
             console.log(err)
           });
       },
-      getAttendanceGradeDetail(semesterId, type, itemNumber) {
+      getAttendanceGradeDetail(semesterId, type, itemNumber, itemName) {
         let self = this
         API.getAttendanceGradeDetail(sessionStorage.getItem('jobNumber'), type, itemNumber, semesterId)
           .then(res => {
             self.$router.push({
               name: 'AttendanceGradeDetailShow',
               params: {
-                data: res.data.data
+                data: res.data.data,
+                title: itemName
               }
             })
           })
