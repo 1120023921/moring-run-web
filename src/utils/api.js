@@ -1,24 +1,23 @@
 import axios from '@/utils/request'
-import CONSTANT from '@/utils/constant'
 
 const API = {
   //获取体质测试成绩
   getGradeByJobNumberAndType(jobNumber, type) {
-    return axios.postJson(CONSTANT.wxUrl + '/grade/getGradeByJobNumberAndType', {
+    return axios.postJson('/grade/getGradeByJobNumberAndType', {
       jobNumber: jobNumber,
       type: type
     })
   },
   //获取体教考勤成绩
   getAttendanceVo(jobNumber, type) {
-    return axios.postJson(CONSTANT.wxUrl + '/grade/getAttendanceVo', {
+    return axios.postJson('/grade/getAttendanceVo', {
       jobNumber: jobNumber,
       type: type
     })
   },
   //获取体教考勤成绩详情
   getAttendanceGradeDetail(jobNumber, type, itemNumber, semesterId) {
-    return axios.postJson(CONSTANT.wxUrl + '/grade/getAttendanceGradeDetail', {
+    return axios.postJson('/grade/getAttendanceGradeDetail', {
       jobNumber: jobNumber,
       type: type,
       itemNumber: itemNumber,
@@ -31,7 +30,11 @@ const API = {
   },
   //上传成绩
   uploadGrade(formData) {
-    return axios.uploadFile(CONSTANT.wxUrl + '/grade/importGrade', formData)
+    return axios.uploadFile('/grade/importGrade', formData)
+  },
+  //获取所有学期信息
+  getAllSemester() {
+    return axios.getJson('/semester/findAll', null)
   }
 }
 

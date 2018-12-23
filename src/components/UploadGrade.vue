@@ -25,18 +25,42 @@
 <script>
   import {Selector, Group, Cell, CellBox, XButton, Flexbox, FlexboxItem, XHeader} from 'vux'
   import API from '@/utils/api'
+  import utils from '@/utils/utils'
 
   export default {
     name: "UploadGrade",
     data() {
       return {
-        semesterList: [1, 2],
+        semesterList: [],
         semester: "",
         files: [],
         fileNum: 0
       }
     },
     methods: {
+      //获取所有学期信息
+      getAllSemester() {
+        let self = this;
+        API.getAllSemester()
+          .then(res => {
+            console.log(res)
+            if (res.data.code >= 200 && res.data.code < 300) {
+              for (let i = 0; i < res.data.data.length; i++) {
+                let semester = {
+                  key: res.data.data[i].id,
+                  value: res.data.data[i].semester
+                }
+                self.semesterList.push(semester)
+              }
+            }
+          })
+          .catch(err => {
+            self.$vux.toast.show({
+              text: '服务器不小心抖了一下，稍后再来吧',
+              type: 'warn'
+            })
+          })
+      },
       //选择文件
       getFile(e) {
         if (e.target.files.length > 5) {
@@ -91,7 +115,7 @@
       }
     },
     mounted() {
-
+      this.getAllSemester();
     },
     components: {
       Group,
