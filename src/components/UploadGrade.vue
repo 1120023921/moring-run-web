@@ -79,6 +79,19 @@
       //成绩上传
       uploadGrade() {
         let self = this;
+        if (self.semester === '') {
+          self.$vux.toast.show({
+            text: '请选择学期',
+            type: 'warn'
+          })
+          return;
+        } else if (self.files.length <= 0) {
+          self.$vux.toast.show({
+            text: '请选择文件',
+            type: 'warn'
+          })
+          return;
+        }
         let formData = new FormData();
         formData.append('semester', self.semester);
         for (let i = 0; i < self.files.length; i++) {
