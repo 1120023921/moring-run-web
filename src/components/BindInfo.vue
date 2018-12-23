@@ -1,5 +1,6 @@
 <template>
   <div>
+    <XHeader>绑定信息</XHeader>
     <Swiper :list="swiperList" @on-index-change=""></Swiper>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       绑定信息
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-  import {Grid, GridItem, Swiper, Group, Cell, XInput, XButton} from 'vux'
+  import {Grid, GridItem, Swiper, Group, Cell, XInput, XButton, XHeader} from 'vux'
   import API from '@/utils/api'
 
   const swiperList = [{
@@ -77,7 +78,7 @@
 
     },
     components: {
-      Grid, GridItem, Swiper, Group, Cell, XInput, XButton
+      Grid, GridItem, Swiper, Group, Cell, XInput, XButton, XHeader
     },
   }
 </script>

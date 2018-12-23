@@ -1,5 +1,6 @@
 <template>
   <div>
+    <XHeader>{{title}}</XHeader>
     <Swiper :list="swiperList" @on-index-change=""></Swiper>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       {{title}}
@@ -29,7 +30,7 @@
 </template>
 
 <script>
-  import {Swiper, CellBox, Cell, Group, Panel, XTable} from 'vux'
+  import {Swiper, CellBox, Cell, Group, Panel, XTable, XHeader} from 'vux'
   import utils from '@/utils/utils'
 
   const swiperList = [{
@@ -65,7 +66,7 @@
       this.init()
     },
     components: {
-      Swiper, CellBox, Cell, Group, Panel, XTable
+      Swiper, CellBox, Cell, Group, Panel, XTable, XHeader
     }
   }
 </script>

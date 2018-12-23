@@ -1,5 +1,6 @@
 <template>
   <div>
+    <XHeader>成绩上传</XHeader>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       成绩上传
     </div>
@@ -8,7 +9,8 @@
     </Group>
     <Group>
       <flexbox>
-        <flexbox-item><label style="padding-left: 15px;">选择文件</label></flexbox-item>
+        <flexbox-item><label style="padding-left: 15px;">文件</label></flexbox-item>
+        <flexbox-item :span="5"><label style="padding-left: 15px;">已选择{{fileNum}}个文件</label></flexbox-item>
         <flexbox-item :span="4"><label class="ui-upload">选择文件<input type="file" @change="getFile" style="display: none;"
                                                                     multiple/></label>
         </flexbox-item>
@@ -21,7 +23,7 @@
 </template>
 
 <script>
-  import {Selector, Group, Cell, CellBox, XButton, Flexbox, FlexboxItem} from 'vux'
+  import {Selector, Group, Cell, CellBox, XButton, Flexbox, FlexboxItem, XHeader} from 'vux'
   import API from '@/utils/api'
 
   export default {
@@ -30,30 +32,61 @@
       return {
         semesterList: [1, 2],
         semester: "",
-        files: []
+        files: [],
+        fileNum: 0
       }
     },
     methods: {
       //选择文件
       getFile(e) {
+        if (e.target.files.length > 5) {
+          this.$vux.toast.show({
+            text: '一次最多上传5个文件',
+            type: 'warn'
+          })
+          return;
+        }
         this.files = [];
         for (let i = 0; i < e.target.files.length; i++) {
           this.files.push(e.target.files[i])
         }
+        this.fileNum = this.files.length
       },
       //成绩上传
       uploadGrade() {
+        let self = this;
         let formData = new FormData();
-        formData.append('semester', this.semester);
-        for (let i = 0; i < this.files.length; i++) {
-          formData.append('multipartFiles', this.files[i]);
+        formData.append('semester', self.semester);
+        for (let i = 0; i < self.files.length; i++) {
+          formData.append('multipartFiles', self.files[i]);
         }
+        self.$vux.loading.show({
+          text: '上传成绩中'
+        })
         API.uploadGrade(formData)
           .then(res => {
-            console.log(res)
+            if (res.data.data) {
+              self.$vux.loading.hide();
+              self.$vux.toast.show({
+                text: '上传成功',
+                type: 'success'
+              })
+              self.files = [];
+              self.fileNum = 0;
+            } else {
+              self.$vux.loading.hide();
+              self.$vux.toast.show({
+                text: res.data.msg,
+                type: 'warn'
+              })
+            }
           })
           .catch(err => {
-            console.log(err)
+            self.$vux.loading.hide();
+            self.$vux.toast.show({
+              text: '服务器不小心抖了一下，稍后再来吧',
+              type: 'warn'
+            })
           });
       }
     },
@@ -65,7 +98,7 @@
       Selector,
       Cell,
       CellBox,
-      XButton, Flexbox, FlexboxItem
+      XButton, Flexbox, FlexboxItem, XHeader
     }
   }
 </script>

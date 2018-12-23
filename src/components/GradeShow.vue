@@ -1,5 +1,6 @@
 <template>
   <div>
+    <XHeader>{{$route.query.title}}</XHeader>
     <Swiper :list="swiperList" @on-index-change=""></Swiper>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       {{$route.query.title}}
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-  import {Swiper, CellBox, Cell, Group} from 'vux'
+  import {Swiper, CellBox, Cell, Group, XHeader} from 'vux'
   import API from '@/utils/api'
 
   const swiperList = [{
@@ -60,7 +61,7 @@
       this.getGradeByJobNumberAndType()
     },
     components: {
-      Swiper, CellBox, Cell, Group
+      Swiper, CellBox, Cell, Group, XHeader
     }
   }
 </script>

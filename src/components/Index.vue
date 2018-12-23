@@ -7,7 +7,7 @@
     <grid :cols=3>
       <grid-item v-for="grid in gridList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
                  :label="grid.label">
-        <img slot="icon" src="../assets/logo.png">
+        <img slot="icon" :src="grid.src">
       </grid-item>
     </grid>
   </div>
@@ -34,22 +34,22 @@
     url: '/',
     label: '体教考勤',
     type: '01',
-    src: '../assets/logo.png',
+    src: require('../assets/tjkq.png'),
     link: "AttendanceGradeShow"
   }, {
     label: '体质测试',
     type: '02',
-    src: '../assets/logo.png',
+    src: require('../assets/tzcs.png'),
     link: "GradeShow"
   }, {
     label: '技能考评',
     type: '03',
-    src: '../assets/logo.png',
+    src: require('../assets/jnkp.png'),
     link: "GradeShow"
   }, {
     label: '成绩上传',
-    type: '03',
-    src: '../assets/logo.png',
+    type: '04',
+    src: require('../assets/upload.png'),
     link: "UploadGrade"
   }]
   export default {
