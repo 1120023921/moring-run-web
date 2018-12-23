@@ -41,7 +41,7 @@
     },
     methods: {
       getAttendanceVo() {
-        let self = this
+        let self = this;
         API.getAttendanceVo(sessionStorage.getItem('jobNumber'), this.$route.query.type)
           .then(res => {
             self.gradeList = res.data.data
@@ -51,7 +51,7 @@
           });
       },
       getAttendanceGradeDetail(semesterId, type, itemNumber, itemName) {
-        let self = this
+        let self = this;
         API.getAttendanceGradeDetail(sessionStorage.getItem('jobNumber'), type, itemNumber, semesterId)
           .then(res => {
             self.$router.push({

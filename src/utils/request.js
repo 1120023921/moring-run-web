@@ -123,5 +123,23 @@ export default {
         resolve(res)
       })
     })
+  },
+  //文件上传
+  uploadFile(url, formData) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url,
+        data: formData,
+        headers: {'Content-Type': 'multipart/form-data'},
+        processData: false,
+        contentType: false,
+        cancelToken: new CancelToken(c => {
+          cancel = c
+        })
+      }).then(res => {
+        resolve(res)
+      })
+    })
   }
 }

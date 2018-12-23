@@ -5,6 +5,7 @@ import GradeShow from '@/components/GradeShow'
 import AttendanceGradeShow from '@/components/AttendanceGradeShow'
 import AttendanceGradeDetailShow from '@/components/AttendanceGradeDetailShow'
 import BindInfo from '@/components/BindInfo'
+import UploadGrade from '@/components/UploadGrade'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/bindInfo',
       name: 'BindInfo',
       component: BindInfo
+    },
+    {
+      path: '/uploadGrade',
+      name: 'UploadGrade',
+      component: UploadGrade
     }
   ]
 })

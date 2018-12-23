@@ -46,6 +46,11 @@
     type: '03',
     src: '../assets/logo.png',
     link: "GradeShow"
+  }, {
+    label: '成绩上传',
+    type: '03',
+    src: '../assets/logo.png',
+    link: "UploadGrade"
   }]
   export default {
     name: 'Index',

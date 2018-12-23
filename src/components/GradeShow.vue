@@ -39,7 +39,7 @@
     },
     methods: {
       getGradeByJobNumberAndType() {
-        let self = this
+        let self = this;
         API.getGradeByJobNumberAndType(sessionStorage.getItem('jobNumber'), this.$route.query.type)
           .then(res => {
             self.gradeList = res.data.data

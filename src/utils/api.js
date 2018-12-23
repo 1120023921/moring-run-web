@@ -28,6 +28,10 @@ const API = {
   //绑定用户信息
   addUserOpenId(param) {
     return axios.patch('/user/addUserOpenId', param)
+  },
+  //上传成绩
+  uploadGrade(formData) {
+    return axios.uploadFile(CONSTANT.wxUrl + '/grade/importGrade', formData)
   }
 }
 
