@@ -23,7 +23,6 @@
 <script>
   import {Selector, Group, Cell, CellBox, XButton, Flexbox, FlexboxItem} from 'vux'
   import API from '@/utils/api'
-  import axios from 'axios'
 
   export default {
     name: "UploadGrade",
