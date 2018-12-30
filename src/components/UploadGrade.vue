@@ -43,7 +43,6 @@
         let self = this;
         API.getAllSemester()
           .then(res => {
-            console.log(res)
             if (res.data.code >= 200 && res.data.code < 300) {
               for (let i = 0; i < res.data.data.length; i++) {
                 let semester = {
@@ -108,8 +107,7 @@
                 text: '上传成功',
                 type: 'success'
               })
-              self.files = [];
-              self.fileNum = 0;
+              location.reload();
             } else {
               self.$vux.loading.hide();
               self.$vux.toast.show({

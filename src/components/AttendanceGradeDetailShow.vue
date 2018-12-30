@@ -1,7 +1,7 @@
 <template>
   <div>
     <XHeader>{{title}}</XHeader>
-    <Swiper :list="swiperList" @on-index-change=""></Swiper>
+    <HeaderImg></HeaderImg>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       {{title}}
     </div>
@@ -30,29 +30,16 @@
 </template>
 
 <script>
-  import {Swiper, CellBox, Cell, Group, Panel, XTable, XHeader} from 'vux'
+  import {CellBox, Cell, Group, Panel, XTable, XHeader} from 'vux'
+  import HeaderImg from '@/components/HeaderImg'
   import utils from '@/utils/utils'
 
-  const swiperList = [{
-    url: 'javascript:',
-    img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vvsr72j20p00gogo2.jpg',
-    title: '送你一朵fua',
-  }, {
-    url: 'javascript:',
-    img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw1k2wj20p00goq7n.jpg',
-    title: '送你一辆车',
-  }, {
-    url: 'javascript:',
-    img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw50iwj20ff0aaaci.jpg', // 404
-    title: '送你一次旅行'
-  }]
 
   export default {
     name: "AttendanceGradeDetailShow",
     data() {
       return {
         title: "",
-        swiperList: swiperList,
         gradeList: []
       }
     },
@@ -66,7 +53,7 @@
       this.init()
     },
     components: {
-      Swiper, CellBox, Cell, Group, Panel, XTable, XHeader
+      CellBox, Cell, Group, Panel, XTable, XHeader, HeaderImg
     }
   }
 </script>

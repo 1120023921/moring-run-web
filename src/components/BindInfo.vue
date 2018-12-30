@@ -1,7 +1,7 @@
 <template>
   <div>
     <XHeader>绑定信息</XHeader>
-    <Swiper :list="swiperList" @on-index-change=""></Swiper>
+    <HeaderImg></HeaderImg>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       绑定信息
     </div>
@@ -18,20 +18,8 @@
 <script>
   import {Grid, GridItem, Swiper, Group, Cell, XInput, XButton, XHeader} from 'vux'
   import API from '@/utils/api'
+  import HeaderImg from '@/components/HeaderImg'
 
-  const swiperList = [{
-    url: 'javascript:',
-    img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vvsr72j20p00gogo2.jpg',
-    title: '送你一朵fua',
-  }, {
-    url: 'javascript:',
-    img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw1k2wj20p00goq7n.jpg',
-    title: '送你一辆车',
-  }, {
-    url: 'javascript:',
-    img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw50iwj20ff0aaaci.jpg', // 404
-    title: '送你一次旅行'
-  }]
   export default {
     name: 'Index',
     data() {
@@ -78,7 +66,7 @@
 
     },
     components: {
-      Grid, GridItem, Swiper, Group, Cell, XInput, XButton, XHeader
+      Grid, GridItem, Swiper, Group, Cell, XInput, XButton, XHeader, HeaderImg
     },
   }
 </script>
