@@ -7,6 +7,7 @@ import AttendanceGradeDetailShow from '@/components/AttendanceGradeDetailShow'
 import BindInfo from '@/components/BindInfo'
 import UploadGrade from '@/components/UploadGrade'
 import HeaderImg from '@/components/HeaderImg'
+import UploadStudentInfo from '@/components/UploadStudentInfo'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/headerImg',
       name: 'HeaderImg',
       component: HeaderImg
+    },
+    {
+      path: '/uploadStudentInfo',
+      name: 'UploadStudentInfo',
+      component: UploadStudentInfo
     }
   ]
 })

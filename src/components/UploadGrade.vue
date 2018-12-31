@@ -9,10 +9,14 @@
     </Group>
     <Group>
       <flexbox>
-        <flexbox-item><label style="padding-left: 15px;">文件</label></flexbox-item>
-        <flexbox-item :span="5"><label style="padding-left: 15px;">已选择{{fileNum}}个文件</label></flexbox-item>
-        <flexbox-item :span="4"><label class="ui-upload">选择文件<input type="file" @change="getFile" style="display: none;"
-                                                                    multiple/></label>
+        <flexbox-item>
+          <label style="padding-left: 15px;">文件</label>
+        </flexbox-item>
+        <flexbox-item :span="5">
+          <label style="padding-left: 15px;">已选择{{fileNum}}个文件</label>
+        </flexbox-item>
+        <flexbox-item :span="4">
+          <label class="ui-upload">选择文件<input type="file" @change="getFile" style="display: none;" multiple/></label>
         </flexbox-item>
       </flexbox>
     </Group>
@@ -25,7 +29,6 @@
 <script>
   import {Selector, Group, Cell, CellBox, XButton, Flexbox, FlexboxItem, XHeader} from 'vux'
   import API from '@/utils/api'
-  import utils from '@/utils/utils'
 
   export default {
     name: "UploadGrade",
@@ -48,7 +51,7 @@
                 let semester = {
                   key: res.data.data[i].id,
                   value: res.data.data[i].semester
-                }
+                };
                 self.semesterList.push(semester)
               }
             }
@@ -101,7 +104,7 @@
         })
         API.uploadGrade(formData)
           .then(res => {
-            if (res.data.data) {
+            if (res.data.code >= 200 && res.data.code < 300) {
               self.$vux.loading.hide();
               self.$vux.toast.show({
                 text: '上传成功',
@@ -111,7 +114,7 @@
             } else {
               self.$vux.loading.hide();
               self.$vux.toast.show({
-                text: res.data.msg,
+                text: res.data.data,
                 type: 'warn'
               })
             }

@@ -40,6 +40,11 @@
     type: '04',
     src: require('../assets/upload.png'),
     link: "UploadGrade"
+  }, {
+    label: '学生信息上传',
+    type: '05',
+    src: require('../assets/upload.png'),
+    link: "UploadStudentInfo"
   }]
   export default {
     name: 'Index',

@@ -35,6 +35,10 @@ const API = {
   //获取所有学期信息
   getAllSemester() {
     return axios.getJson('/semester/findAll', null)
+  },
+  //上传学生信息
+  uploadStudentInfo(formData) {
+    return axios.uploadFile('/user/importStudentInfo', formData)
   }
 }
 
