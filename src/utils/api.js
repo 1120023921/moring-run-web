@@ -39,6 +39,10 @@ const API = {
   //上传学生信息
   uploadStudentInfo(formData) {
     return axios.uploadFile('/user/importStudentInfo', formData)
+  },
+  //获取所有轮播信息
+  getAllCarousel(){
+    return axios.getJson('/carousel/findAll', null)
   }
 }
 
