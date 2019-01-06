@@ -8,6 +8,7 @@ import BindInfo from '@/components/BindInfo'
 import UploadGrade from '@/components/UploadGrade'
 import HeaderImg from '@/components/HeaderImg'
 import UploadStudentInfo from '@/components/UploadStudentInfo'
+import CarouselList from '@/components/CarouselList'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/uploadStudentInfo',
       name: 'UploadStudentInfo',
       component: UploadStudentInfo
+    },
+    {
+      path: '/carouselList',
+      name: 'CarouselList',
+      component: CarouselList
     }
   ]
 })

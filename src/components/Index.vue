@@ -45,6 +45,11 @@
     type: '05',
     src: require('../assets/upload.png'),
     link: "UploadStudentInfo"
+  }, {
+    label: '首页轮播管理',
+    type: '06',
+    src: require('../assets/upload.png'),
+    link: "CarouselList"
   }]
   export default {
     name: 'Index',
