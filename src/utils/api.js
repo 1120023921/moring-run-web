@@ -41,9 +41,24 @@ const API = {
     return axios.uploadFile('/user/importStudentInfo', formData)
   },
   //获取所有轮播信息
-  getAllCarousel(){
+  getAllCarousel() {
     return axios.getJson('/carousel/findAll', null)
+  },
+  //根据id获取轮播信息
+  getCarouselById(id) {
+    return axios.get('/carousel/getCarouselById', {id: id})
+  },
+  //更新轮播信息
+  updateCarousel(formData) {
+    return axios.uploadFilePatch('/carousel/updateCarousel', formData)
+  },
+  //新增轮播信息
+  uploadCarousel(formData) {
+    return axios.uploadFile('/carousel/uploadCarousel', formData)
+  },
+  deleteCarousel(id) {
+    return axios.delete('/carousel/deleteCarouselById/' + id)
   }
-}
+};
 
 export default API

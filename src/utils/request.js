@@ -93,6 +93,21 @@ export default {
       })
     })
   },
+  get(url, param) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'get',
+        url,
+        params: param,
+        headers: {'Content-Type': 'multipart/form-data'},
+        cancelToken: new CancelToken(c => {
+          cancel = c
+        })
+      }).then(res => {
+        resolve(res)
+      })
+    })
+  },
   //post请求
   postJson(url, param) {
     return new Promise((resolve, reject) => {
@@ -124,11 +139,42 @@ export default {
       })
     })
   },
+  delete(url) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        url,
+        cancelToken: new CancelToken(c => {
+          cancel = c
+        })
+      }).then(res => {
+        resolve(res)
+      })
+    })
+  },
   //文件上传
   uploadFile(url, formData) {
     return new Promise((resolve, reject) => {
       axios({
         method: 'POST',
+        url,
+        data: formData,
+        headers: {'Content-Type': 'multipart/form-data'},
+        processData: false,
+        contentType: false,
+        cancelToken: new CancelToken(c => {
+          cancel = c
+        })
+      }).then(res => {
+        resolve(res)
+      })
+    })
+  },
+  uploadFilePatch(url, formData) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'PATCH',
         url,
         data: formData,
         headers: {'Content-Type': 'multipart/form-data'},

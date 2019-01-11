@@ -9,6 +9,7 @@ import UploadGrade from '@/components/UploadGrade'
 import HeaderImg from '@/components/HeaderImg'
 import UploadStudentInfo from '@/components/UploadStudentInfo'
 import CarouselList from '@/components/CarouselList'
+import CarouselUpdate from '@/components/CarouselUpdate'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/carouselList',
       name: 'CarouselList',
       component: CarouselList
+    },
+    {
+      path: '/carouselUpdate',
+      name: 'CarouselUpdate',
+      component: CarouselUpdate
     }
   ]
 })

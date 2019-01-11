@@ -6,13 +6,17 @@
       {{$route.query.title}}
     </div>
     <Group>
-      <Cell v-for="(item,index) in carouselList" :key="item.id" :title="item.title" is-link></Cell>
+      <Cell v-for="(item,index) in carouselList" :key="item.id" :title="item.title" is-link
+            @click.native="updateCarousel(item.id)"></Cell>
     </Group>
+    <div style="padding:15px;">
+      <XButton @click.native="updateCarousel('')" type="primary">新增轮播</XButton>
+    </div>
   </div>
 </template>
 
 <script>
-  import {CellBox, Cell, Group, XHeader} from 'vux'
+  import {CellBox, Cell, Group, XHeader, XButton} from 'vux'
   import API from '@/utils/api'
   import HeaderImg from '@/components/HeaderImg'
 
@@ -33,20 +37,29 @@
           .catch(err => {
             console.log(err)
           });
+      },
+      //跳转编辑页面
+      updateCarousel(id) {
+        this.$router.push({
+          name: 'CarouselUpdate',
+          params: {
+            id: id
+          }
+        })
       }
     },
     mounted() {
       this.getAllCarousel()
     },
     components: {
-      CellBox, Cell, Group, XHeader, HeaderImg
+      CellBox, Cell, Group, XHeader, HeaderImg, XButton
     }
   }
 </script>
 
 <style scoped>
   .weui-cell {
-    line-height: 0px;
+    line-height: 0;
     padding: 5px 15px;
   }
 </style>
