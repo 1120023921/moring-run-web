@@ -5,7 +5,13 @@
       体育测试成绩查询
     </div>
     <grid :cols=3>
-      <grid-item v-for="grid in gridList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
+      <grid-item v-for="grid in userList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
+                 :label="grid.label">
+        <img slot="icon" :src="grid.src">
+      </grid-item>
+    </grid>
+    <grid :cols=3 v-if="isAdmin">
+      <grid-item v-for="grid in adminList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
                  :label="grid.label">
         <img slot="icon" :src="grid.src">
       </grid-item>
@@ -16,10 +22,10 @@
 <script>
   import {Grid, GridItem} from 'vux'
   import HeaderImg from '@/components/HeaderImg'
-  import axios from '@/utils/request'
+  import API from '@/utils/api'
 
 
-  const gridList = [{
+  const userList = [{
     url: '/',
     label: '体教考勤',
     type: '01',
@@ -35,7 +41,9 @@
     type: '03',
     src: require('../assets/jnkp.png'),
     link: "GradeShow"
-  }, {
+  }];
+
+  const adminList = [{
     label: '成绩上传',
     type: '04',
     src: require('../assets/upload.png'),
@@ -50,12 +58,15 @@
     type: '06',
     src: require('../assets/upload.png'),
     link: "CarouselList"
-  }]
+  }];
+
   export default {
     name: 'Index',
     data() {
       return {
-        gridList: gridList
+        userList: userList,
+        adminList: adminList,
+        isAdmin: false
       }
     },
     methods: {
@@ -67,10 +78,37 @@
             title: title
           }
         })
+      },
+      getUserInfo(jobNumber) {
+        let self = this;
+        API.getTSUserWithRoles(jobNumber)
+          .then(res => {
+            if (res.data.code >= 200 && res.data.code < 300) {
+              let roles = res.data.data.roles;
+              for (let i = 0; i < roles.length; i++) {
+                if (roles[i].roid === 'admin') {
+                  self.isAdmin = true;
+                  break;
+                }
+              }
+            } else {
+              self.$vux.toast.show({
+                text: res.data.msg,
+                type: 'warn'
+              })
+            }
+          })
+          .catch(err => {
+            self.$vux.toast.show({
+              text: '服务器不小心抖了一下，稍后再来吧',
+              type: 'warn'
+            })
+          });
       }
     },
     mounted() {
       sessionStorage.setItem('jobNumber', this.$route.query.jobNumber)
+      this.getUserInfo(this.$route.query.jobNumber)
     },
     components: {
       Grid,

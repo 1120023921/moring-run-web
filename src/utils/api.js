@@ -58,6 +58,9 @@ const API = {
   },
   deleteCarousel(id) {
     return axios.delete('/carousel/deleteCarouselById/' + id)
+  },
+  getTSUserWithRoles(id) {
+    return axios.get('/tSUser/getTSUserWithRoles/' + id, {})
   }
 };
 

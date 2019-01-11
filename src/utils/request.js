@@ -73,7 +73,8 @@ axios.interceptors.response.use(response => {
 axios.defaults.baseURL = '/api'
 //设置默认请求头
 axios.defaults.headers = {
-  'X-Requested-With': 'XMLHttpRequest'
+  'X-Requested-With': 'XMLHttpRequest',
+  'User': sessionStorage.getItem('jobNumber')
 }
 axios.defaults.timeout = 50000
 

@@ -58,12 +58,12 @@
               self.$vux.toast.show({
                 text: '上传成功',
                 type: 'success'
-              })
-              setTimeout(location.reload(),1000)
+              });
+              window.history.back();
             } else {
               self.$vux.loading.hide();
               self.$vux.toast.show({
-                text: res.data.data,
+                text: res.data.msg,
                 type: 'warn'
               })
             }
