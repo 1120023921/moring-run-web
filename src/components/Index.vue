@@ -24,7 +24,6 @@
   import HeaderImg from '@/components/HeaderImg'
   import API from '@/utils/api'
 
-
   const userList = [{
     url: '/',
     label: '体教考勤',
@@ -66,7 +65,8 @@
       return {
         userList: userList,
         adminList: adminList,
-        isAdmin: false
+        isAdmin: false,
+        isFirst: true
       }
     },
     methods: {
@@ -107,8 +107,12 @@
       }
     },
     mounted() {
-      sessionStorage.setItem('jobNumber', this.$route.query.jobNumber + "");
-      this.getUserInfo(this.$route.query.jobNumber);
+      sessionStorage.setItem('jobNumber', this.$route.query.jobNumber);
+      this.getUserInfo(sessionStorage.getItem('jobNumber'));
+      if (sessionStorage.getItem('isFirst') === null) {
+        sessionStorage.setItem('isFirst', '1');
+        window.location.reload();
+      }
     },
     components: {
       Grid,

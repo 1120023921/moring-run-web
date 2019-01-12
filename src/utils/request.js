@@ -75,7 +75,7 @@ axios.defaults.baseURL = '/api'
 axios.defaults.headers = {
   'X-Requested-With': 'XMLHttpRequest',
   'User': sessionStorage.getItem('jobNumber')
-}
+};
 axios.defaults.timeout = 50000
 
 export default {
