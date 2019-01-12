@@ -107,8 +107,8 @@
       }
     },
     mounted() {
-      sessionStorage.setItem('jobNumber', this.$route.query.jobNumber)
-      this.getUserInfo(this.$route.query.jobNumber)
+      sessionStorage.setItem('jobNumber', this.$route.query.jobNumber + "");
+      this.getUserInfo(this.$route.query.jobNumber);
     },
     components: {
       Grid,
