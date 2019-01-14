@@ -19,7 +19,7 @@
         <td>{{gradeList.length-index}}</td>
         <td>{{item.grade}}</td>
         <td>{{item.deviceNumber}}</td>
-        <td>{{item.gradeCreateTime}}</td>
+        <td>{{getDate(item.gradeCreateTime)}}</td>
       </tr>
       </tbody>
     </XTable>
@@ -47,6 +47,9 @@
       init() {
         this.title = this.$route.params.title
         this.gradeList = this.$route.params.data.sort(utils.compare("gradeCreateTime"));
+      },
+      getDate(dateTime) {
+        return dateTime.substring(0, 10);
       }
     },
     mounted() {
