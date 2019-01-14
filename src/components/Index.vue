@@ -16,6 +16,9 @@
         <img slot="icon" :src="grid.src">
       </grid-item>
     </grid>
+    <div class="copyright">
+      <span>Copyright © 2018-2019 DoubleH. All Rights Reserved.</span>
+    </div>
   </div>
 </template>
 
@@ -122,5 +125,10 @@
 </script>
 
 <style scoped>
-
+  .copyright {
+    text-align: center;
+    margin-top: 5%;
+    color: #CCCCCC;
+    font-size: 12px;
+  }
 </style>
