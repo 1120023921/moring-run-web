@@ -87,6 +87,7 @@
         API.getTSUserWithRoles(jobNumber)
           .then(res => {
             if (res.data.code >= 200 && res.data.code < 300) {
+              sessionStorage.setItem('name', res.data.data.name);
               let roles = res.data.data.roles;
               for (let i = 0; i < roles.length; i++) {
                 if (roles[i].roid === 'admin') {

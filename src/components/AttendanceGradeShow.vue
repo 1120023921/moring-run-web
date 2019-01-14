@@ -3,11 +3,12 @@
     <XHeader>{{$route.query.title}}</XHeader>
     <HeaderImg></HeaderImg>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
-      {{$route.query.title}}
+      <!--{{$route.query.title}}-->
+      {{title}}
     </div>
     <Group v-for="(value,key) in gradeList" :key="key" :title="key">
       <Cell style="line-height:0px;padding: 5px 15px;" v-for="(item,index) in value" :key="index" :title="item.itemName"
-            :value="item.grade" is-link
+            :value="item.grade+'次'" is-link
             @click.native="getAttendanceGradeDetail(item.semesterId,item.type,item.itemNumber,item.itemName)"></Cell>
     </Group>
   </div>
@@ -52,6 +53,11 @@
           .catch(err => {
             console.log(err)
           });
+      }
+    },
+    computed:{
+      title(){
+        return sessionStorage.getItem('name')+'考勤记录';
       }
     },
     mounted() {
