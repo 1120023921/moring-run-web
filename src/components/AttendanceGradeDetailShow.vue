@@ -23,9 +23,9 @@
       </tr>
       </tbody>
     </XTable>
-    <!--<div>-->
-    <!--<Panel :list="gradeList" type="4"></Panel>-->
-    <!--</div>-->
+    <div class="copyright">
+      <span>本站查询仅供参考，最后评定成绩数据以文体部服务器为准</span>
+    </div>
   </div>
 </template>
 
@@ -62,5 +62,10 @@
 </script>
 
 <style scoped>
-
+  .copyright {
+    text-align: center;
+    margin-top: 5%;
+    color: #CCCCCC;
+    font-size: 12px;
+  }
 </style>
