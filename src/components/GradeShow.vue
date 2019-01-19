@@ -23,9 +23,9 @@
         </tr>
         </tbody>
       </XTable>
-      <div class="copyright">
-        <span>本站查询仅供参考，最后评定成绩数据以文体部服务器为准</span>
-      </div>
+    </div>
+    <div class="copyright">
+      <span>本站查询仅供参考，最后评定成绩数据以文体部服务器为准</span>
     </div>
     <!--<Group v-for="(value,key) in gradeList" :key="key" :title="key">-->
       <!--<Cell v-for="(item,index) in value" :key="index" :title="item.itemName"-->
@@ -52,7 +52,7 @@
         let self = this;
         API.getGradeByJobNumberAndType(sessionStorage.getItem('jobNumber'), this.$route.query.type)
           .then(res => {
-            self.gradeList = res.data.data
+            self.gradeList = utils.mapSortDesc(res.data.data)
           })
           .catch(err => {
             console.log(err)

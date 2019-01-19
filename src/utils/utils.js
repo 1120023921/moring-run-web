@@ -8,6 +8,13 @@ const Utils = {
   },
   getDate(dateTime) {
     return dateTime.substring(0, 10);
+  },
+  mapSortDesc(map) {
+    let ordered = {};
+    Object.keys(map).sort().reverse().forEach(function (key) {
+      ordered[key] = map[key];
+    });
+    return ordered;
   }
 };
 export default Utils

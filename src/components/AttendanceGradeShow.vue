@@ -19,6 +19,7 @@
   import API from '@/utils/api'
   import AttendanceGradeDetailShow from '@/components/AttendanceGradeDetailShow'
   import HeaderImg from '@/components/HeaderImg'
+  import utils from '@/utils/utils'
 
   export default {
     name: "AttendanceGradeShow",
@@ -32,7 +33,7 @@
         let self = this;
         API.getAttendanceVo(sessionStorage.getItem('jobNumber'), this.$route.query.type)
           .then(res => {
-            self.gradeList = res.data.data
+            self.gradeList = utils.mapSortDesc(res.data.data)
           })
           .catch(err => {
             console.log(err)
