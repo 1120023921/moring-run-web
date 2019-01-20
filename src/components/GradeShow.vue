@@ -1,6 +1,7 @@
 <template>
   <div>
     <XHeader>{{$route.query.title}}</XHeader>
+    <search v-model="value" @on-submit="onSubmit"></search>
     <HeaderImg></HeaderImg>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       {{$route.query.title}}
@@ -16,7 +17,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(item,index) in value" :key="index">
+        <tr v-for="(item,index) in value" :key="index" is-link>
           <td>{{item.itemName}}</td>
           <td>{{transferName(item.grade,item.itemName)}}</td>
           <td>{{getDate(item.gradeCreateTime)}}</td>
@@ -35,7 +36,7 @@
 </template>
 
 <script>
-  import {CellBox, Cell, Group, XHeader, XTable, LoadMore} from 'vux'
+  import {CellBox, Cell, Group, XHeader, XTable, LoadMore, Search} from 'vux'
   import API from '@/utils/api'
   import HeaderImg from '@/components/HeaderImg'
   import utils from '@/utils/utils'
@@ -73,7 +74,7 @@
       this.getGradeByJobNumberAndType()
     },
     components: {
-      CellBox, Cell, Group, XHeader, HeaderImg, XTable, LoadMore
+      CellBox, Cell, Group, XHeader, HeaderImg, XTable, LoadMore, Search
     }
   }
 </script>

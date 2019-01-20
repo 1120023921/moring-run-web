@@ -56,6 +56,7 @@ const API = {
   uploadCarousel(formData) {
     return axios.uploadFile('/carousel/uploadCarousel', formData)
   },
+  //删除轮播信息
   deleteCarousel(id) {
     return axios.delete('/carousel/deleteCarouselById/' + id)
   },

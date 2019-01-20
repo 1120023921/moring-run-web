@@ -12,7 +12,7 @@ const Utils = {
   mapSortDesc(map) {
     let ordered = {};
     Object.keys(map).sort().reverse().forEach(function (key) {
-      ordered[key] = map[key];
+      ordered['※'+key+'※'] = map[key];
     });
     return ordered;
   }
