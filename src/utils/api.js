@@ -8,6 +8,13 @@ const API = {
       type: type
     })
   },
+  //老师获取体质测试成绩
+  getGradeByJobNumberAndTypeByTeacher(jobNumber, type) {
+    return axios.postJson('/grade/getGradeByJobNumberAndTypeByTeacher', {
+      jobNumber: jobNumber,
+      type: type
+    })
+  },
   //获取体教考勤成绩
   getAttendanceVo(jobNumber, type) {
     return axios.postJson('/grade/getAttendanceVo', {
@@ -15,9 +22,25 @@ const API = {
       type: type
     })
   },
+  //老师获取体教考勤成绩
+  getAttendanceVoByTeacher(jobNumber, type) {
+    return axios.postJson('/grade/getAttendanceVoByTeacher', {
+      jobNumber: jobNumber,
+      type: type
+    })
+  },
   //获取体教考勤成绩详情
   getAttendanceGradeDetail(jobNumber, type, itemNumber, semesterId) {
     return axios.postJson('/grade/getAttendanceGradeDetail', {
+      jobNumber: jobNumber,
+      type: type,
+      itemNumber: itemNumber,
+      semesterId: semesterId
+    })
+  },
+  //教师获取体教考勤成绩详情
+  getAttendanceGradeDetailByTeacher(jobNumber, type, itemNumber, semesterId) {
+    return axios.postJson('/grade/getAttendanceGradeDetailByTeacher', {
       jobNumber: jobNumber,
       type: type,
       itemNumber: itemNumber,

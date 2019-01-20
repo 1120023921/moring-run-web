@@ -45,8 +45,8 @@
     },
     methods: {
       init() {
-        this.title = this.$route.params.title;
-        this.gradeList = this.$route.params.data.sort(utils.compare("gradeCreateTime"));
+        this.title = this.$route.query.title;
+        this.gradeList = this.$route.query.data.sort(utils.compare("gradeCreateTime"));
       },
       getDate(dateTime) {
         return dateTime.substring(0, 10);

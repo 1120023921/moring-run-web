@@ -1,7 +1,7 @@
 <template>
   <div>
     <XHeader>{{$route.query.title}}</XHeader>
-    <search v-model="value" @on-submit="onSubmit"></search>
+    <search v-if="searchShow" v-model="searchJobNumber" @on-submit="searchStudentGrade"></search>
     <HeaderImg></HeaderImg>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       {{$route.query.title}}
@@ -29,8 +29,8 @@
       <span>本站查询仅供参考，最后评定成绩数据以文体部服务器为准</span>
     </div>
     <!--<Group v-for="(value,key) in gradeList" :key="key" :title="key">-->
-      <!--<Cell v-for="(item,index) in value" :key="index" :title="item.itemName"-->
-            <!--:value="transferName(item.grade,item.itemName)"></Cell>-->
+    <!--<Cell v-for="(item,index) in value" :key="index" :title="item.itemName"-->
+    <!--:value="transferName(item.grade,item.itemName)"></Cell>-->
     <!--</Group>-->
   </div>
 </template>
@@ -45,7 +45,9 @@
     name: "GradeShow",
     data() {
       return {
-        gradeList: {}
+        gradeList: {},
+        searchJobNumber: "",
+        searchShow: false
       }
     },
     methods: {
@@ -68,10 +70,34 @@
       },
       getDate(dateTime) {
         return dateTime.substring(0, 10);
+      },
+      //管理员查询学生成绩
+      searchStudentGrade() {
+        let self = this;
+        API.getGradeByJobNumberAndTypeByTeacher(self.searchJobNumber, this.$route.query.type)
+          .then(res => {
+            self.gradeList = utils.mapSortDesc(res.data.data)
+          })
+          .catch(err => {
+            console.log(err)
+          });
+      },
+      //是否是教师需要显示搜索框
+      needShowSearch() {
+        if (sessionStorage.getItem('roles') !== null) {
+          let roles = JSON.parse(sessionStorage.getItem('roles'));
+          for (let i = 0; i < roles.length; i++) {
+            if (roles[i].roid === 'admin' || roles[i].roid === 'teacher') {
+              this.searchShow = true;
+              break;
+            }
+          }
+        }
       }
     },
     mounted() {
-      this.getGradeByJobNumberAndType()
+      this.needShowSearch();
+      this.getGradeByJobNumberAndType();
     },
     components: {
       CellBox, Cell, Group, XHeader, HeaderImg, XTable, LoadMore, Search
@@ -84,6 +110,7 @@
     line-height: 0px;
     padding: 5px 15px;
   }
+
   .copyright {
     text-align: center;
     margin-top: 5%;

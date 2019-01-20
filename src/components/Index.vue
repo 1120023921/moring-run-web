@@ -95,6 +95,7 @@
                   break;
                 }
               }
+              sessionStorage.setItem('roles', JSON.stringify(roles));
             } else {
               self.$vux.toast.show({
                 text: res.data.msg,
@@ -108,6 +109,15 @@
               type: 'warn'
             })
           });
+        if(sessionStorage.getItem('roles')!==null){
+          let roles = JSON.parse(sessionStorage.getItem('roles'));
+          for (let i = 0; i < roles.length; i++) {
+            if (roles[i].roid === 'admin') {
+              self.isAdmin = true;
+              break;
+            }
+          }
+        }
       }
     },
     mounted() {
