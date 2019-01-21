@@ -91,6 +91,12 @@
                 sessionStorage.setItem('name', res.data.data.name);
                 let roles = res.data.data.roles;
                 sessionStorage.setItem('roles', JSON.stringify(roles));
+                for (let i = 0; i < roles.length; i++) {
+                  if (roles[i].roid === 'admin') {
+                    self.isAdmin = true;
+                    break;
+                  }
+                }
               } else {
                 self.$vux.toast.show({
                   text: res.data.msg,
@@ -104,7 +110,7 @@
                 type: 'warn'
               })
             });
-        } else {
+        }else {
           let roles = JSON.parse(sessionStorage.getItem('roles'));
           for (let i = 0; i < roles.length; i++) {
             if (roles[i].roid === 'admin') {
