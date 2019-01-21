@@ -84,32 +84,27 @@
       },
       getUserInfo(jobNumber) {
         let self = this;
-        API.getTSUserWithRoles(jobNumber)
-          .then(res => {
-            if (res.data.code >= 200 && res.data.code < 300) {
-              sessionStorage.setItem('name', res.data.data.name);
-              let roles = res.data.data.roles;
-              for (let i = 0; i < roles.length; i++) {
-                if (roles[i].roid === 'admin') {
-                  self.isAdmin = true;
-                  break;
-                }
+        if (sessionStorage.getItem('roles') === null) {
+          API.getTSUserWithRoles(jobNumber)
+            .then(res => {
+              if (res.data.code >= 200 && res.data.code < 300) {
+                sessionStorage.setItem('name', res.data.data.name);
+                let roles = res.data.data.roles;
+                sessionStorage.setItem('roles', JSON.stringify(roles));
+              } else {
+                self.$vux.toast.show({
+                  text: res.data.msg,
+                  type: 'warn'
+                })
               }
-              sessionStorage.setItem('roles', JSON.stringify(roles));
-            } else {
+            })
+            .catch(err => {
               self.$vux.toast.show({
-                text: res.data.msg,
+                text: '服务器不小心抖了一下，稍后再来吧',
                 type: 'warn'
               })
-            }
-          })
-          .catch(err => {
-            self.$vux.toast.show({
-              text: '服务器不小心抖了一下，稍后再来吧',
-              type: 'warn'
-            })
-          });
-        if(sessionStorage.getItem('roles')!==null){
+            });
+        } else {
           let roles = JSON.parse(sessionStorage.getItem('roles'));
           for (let i = 0; i < roles.length; i++) {
             if (roles[i].roid === 'admin') {
