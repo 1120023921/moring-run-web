@@ -4,18 +4,32 @@
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       体育测试成绩查询
     </div>
+    <!--<grid :cols=3>-->
+      <!--<grid-item v-for="grid in userList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"-->
+                 <!--:label="grid.label">-->
+        <!--<img slot="icon" :src="grid.src">-->
+      <!--</grid-item>-->
+    <!--</grid>-->
     <grid :cols=3>
       <grid-item v-for="grid in userList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
                  :label="grid.label">
         <img slot="icon" :src="grid.src">
       </grid-item>
-    </grid>
-    <grid :cols=3 v-if="isAdmin">
-      <grid-item v-for="grid in adminList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
+      <grid-item v-if="isTeacher||isAdmin" v-for="grid in teacherList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
+                 :label="grid.label">
+        <img slot="icon" :src="grid.src">
+      </grid-item>
+      <grid-item v-if="isAdmin" v-for="grid in adminList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
                  :label="grid.label">
         <img slot="icon" :src="grid.src">
       </grid-item>
     </grid>
+    <!--<grid :cols=3 v-if="isAdmin">-->
+      <!--<grid-item v-for="grid in adminList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"-->
+                 <!--:label="grid.label">-->
+        <!--<img slot="icon" :src="grid.src">-->
+      <!--</grid-item>-->
+    <!--</grid>-->
     <div class="copyright">
       <span>Copyright © 2018-2019 DoubleH. All Rights Reserved.</span>
     </div>
@@ -45,7 +59,7 @@
     link: "GradeShow"
   }];
 
-  const adminList = [{
+  const teacherList = [{
     label: '成绩上传',
     type: '04',
     src: require('../assets/upload.png'),
@@ -55,11 +69,18 @@
     type: '05',
     src: require('../assets/upload.png'),
     link: "UploadStudentInfo"
-  }, {
+  }];
+
+  const adminList = [{
     label: '首页轮播管理',
     type: '06',
     src: require('../assets/upload.png'),
     link: "CarouselList"
+  }, {
+    label: '学期管理',
+    type: '07',
+    src: require('../assets/upload.png'),
+    link: "SemesterList"
   }];
 
   export default {
@@ -67,8 +88,10 @@
     data() {
       return {
         userList: userList,
+        teacherList: teacherList,
         adminList: adminList,
         isAdmin: false,
+        isTeacher: false,
         isFirst: true
       }
     },
@@ -94,7 +117,8 @@
                 for (let i = 0; i < roles.length; i++) {
                   if (roles[i].roid === 'admin') {
                     self.isAdmin = true;
-                    break;
+                  } else if (roles[i].roid === 'teacher') {
+                    self.isTeacher = true;
                   }
                 }
               } else {
@@ -110,12 +134,13 @@
                 type: 'warn'
               })
             });
-        }else {
+        } else {
           let roles = JSON.parse(sessionStorage.getItem('roles'));
           for (let i = 0; i < roles.length; i++) {
             if (roles[i].roid === 'admin') {
               self.isAdmin = true;
-              break;
+            } else if (roles[i].roid === 'teacher') {
+              self.isTeacher = true;
             }
           }
         }

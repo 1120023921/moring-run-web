@@ -124,6 +124,21 @@ export default {
       })
     })
   },
+  //post请求
+  patchJson(url, param) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'PATCH',
+        url,
+        data: param,
+        cancelToken: new CancelToken(c => {
+          cancel = c
+        })
+      }).then(res => {
+        resolve(res)
+      })
+    })
+  },
   //patch请求
   patch(url, param) {
     return new Promise((resolve, reject) => {

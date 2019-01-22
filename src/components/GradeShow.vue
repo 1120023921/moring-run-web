@@ -4,7 +4,8 @@
     <search v-if="searchShow" v-model="searchJobNumber" @on-submit="searchStudentGrade"></search>
     <HeaderImg></HeaderImg>
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
-      {{$route.query.title}}
+      <!--{{$route.query.title}}-->
+      {{title}}
     </div>
     <div v-for="(value,key) in gradeList" :key="key" :title="key">
       <load-more :tip="key" :show-loading="false" background-color="#fbf9fe"></load-more>
@@ -47,7 +48,8 @@
       return {
         gradeList: {},
         searchJobNumber: "",
-        searchShow: false
+        searchShow: false,
+        searchStudentName: ""
       }
     },
     methods: {
@@ -76,7 +78,11 @@
         let self = this;
         API.getGradeByJobNumberAndTypeByTeacher(self.searchJobNumber, this.$route.query.type)
           .then(res => {
-            self.gradeList = utils.mapSortDesc(res.data.data)
+            self.gradeList = utils.mapSortDesc(res.data.data);
+            for (let i in res.data.data) {
+              self.searchStudentName = res.data.data[i][0].name;
+              break;
+            }
           })
           .catch(err => {
             console.log(err)
@@ -98,6 +104,11 @@
     mounted() {
       this.needShowSearch();
       this.getGradeByJobNumberAndType();
+    },
+    computed: {
+      title() {
+        return (this.searchStudentName === '' ? sessionStorage.getItem('name') : this.searchStudentName) + '考勤记录';
+      }
     },
     components: {
       CellBox, Cell, Group, XHeader, HeaderImg, XTable, LoadMore, Search

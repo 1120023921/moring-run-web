@@ -85,7 +85,23 @@ const API = {
   },
   getTSUserWithRoles(id) {
     return axios.get('/tSUser/getTSUserWithRoles/' + id, {})
-  }
+  },
+  //根据id获取轮播信息
+  getSemesterById(id) {
+    return axios.get('/semester/getSemesterById', {id: id})
+  },
+  //新增学期
+  insertSemester(param) {
+    return axios.postJson('/semester/insertSemester', param);
+  },
+  //删除学期信息
+  deleteSemester(id) {
+    return axios.delete('/semester/deleteSemesterById/' + id)
+  },
+  //修改学期信息
+  updateSemester(param) {
+    return axios.patchJson('/semester/updateSemester', param)
+  },
 };
 
 export default API

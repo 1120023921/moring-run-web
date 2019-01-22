@@ -43,8 +43,8 @@
                 text: '绑定成功',
                 type: 'success'
               })
-              // window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf0d2b18286906056&redirect_uri=http%3a%2f%2fdoublehh.cn%2fmorning-run%2fwx%2fauth%2fwxf0d2b18286906056%2flogin&response_type=code&scope=snsapi_userinfo&state=login#wechat_redirect';
-              window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbe3c1744c0f71ab4&redirect_uri=http%3a%2f%2fdoublehh.cn%3a8082%2fmorning-run%2fwx%2fauth%2fwxbe3c1744c0f71ab4%2flogin&response_type=code&scope=snsapi_userinfo&state=login#wechat_redirect';
+              window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf0d2b18286906056&redirect_uri=http%3a%2f%2fdoublehh.cn%2fmorning-run%2fwx%2fauth%2fwxf0d2b18286906056%2flogin&response_type=code&scope=snsapi_userinfo&state=login#wechat_redirect';
+              // window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbe3c1744c0f71ab4&redirect_uri=http%3a%2f%2fdoublehh.cn%3a8082%2fmorning-run%2fwx%2fauth%2fwxbe3c1744c0f71ab4%2flogin&response_type=code&scope=snsapi_userinfo&state=login#wechat_redirect';
             } else {
               this.$vux.toast.show({
                 text: res.data.data,

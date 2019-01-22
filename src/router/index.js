@@ -10,6 +10,8 @@ import HeaderImg from '@/components/HeaderImg'
 import UploadStudentInfo from '@/components/UploadStudentInfo'
 import CarouselList from '@/components/CarouselList'
 import CarouselUpdate from '@/components/CarouselUpdate'
+import SemesterList from '@/components/SemesterList'
+import SemesterUpdate from '@/components/SemesterUpdate'
 
 Vue.use(Router)
 
@@ -64,6 +66,16 @@ export default new Router({
       path: '/carouselUpdate',
       name: 'CarouselUpdate',
       component: CarouselUpdate
+    },
+    {
+      path: '/semesterList',
+      name: 'SemesterList',
+      component: SemesterList
+    },
+    {
+      path: '/semesterUpdate',
+      name: 'SemesterUpdate',
+      component: SemesterUpdate
     }
   ]
 })

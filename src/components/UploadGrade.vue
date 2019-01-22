@@ -52,8 +52,9 @@
                   key: res.data.data[i].id,
                   value: res.data.data[i].semester
                 };
-                self.semesterList.push(semester)
+                self.semesterList.push(semester);
               }
+              self.semester = self.semesterList[0].key;
             }
           })
           .catch(err => {
@@ -69,7 +70,7 @@
           this.$vux.toast.show({
             text: '一次最多上传5个文件',
             type: 'warn'
-          })
+          });
           return;
         }
         this.files = [];
@@ -85,13 +86,13 @@
           self.$vux.toast.show({
             text: '请选择学期',
             type: 'warn'
-          })
+          });
           return;
         } else if (self.files.length <= 0) {
           self.$vux.toast.show({
             text: '请选择文件',
             type: 'warn'
-          })
+          });
           return;
         }
         let formData = new FormData();
@@ -101,7 +102,7 @@
         }
         self.$vux.loading.show({
           text: '上传成绩中'
-        })
+        });
         API.uploadGrade(formData)
           .then(res => {
             if (res.data.code >= 200 && res.data.code < 300) {
@@ -109,7 +110,7 @@
               self.$vux.toast.show({
                 text: '上传成功',
                 type: 'success'
-              })
+              });
               location.reload();
             } else {
               self.$vux.loading.hide();
