@@ -4,33 +4,24 @@
     <div style="text-align: center;color: lime;font-size: 30px;padding-top: 30px;padding-bottom: 30px;">
       体育测试成绩查询
     </div>
-    <!--<grid :cols=3>-->
-      <!--<grid-item v-for="grid in userList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"-->
-                 <!--:label="grid.label">-->
-        <!--<img slot="icon" :src="grid.src">-->
-      <!--</grid-item>-->
-    <!--</grid>-->
     <grid :cols=3>
       <grid-item v-for="grid in userList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
                  :label="grid.label">
         <img slot="icon" :src="grid.src">
       </grid-item>
-      <grid-item v-if="isTeacher||isAdmin" v-for="grid in teacherList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
+      <grid-item v-if="isTeacher||isAdmin" v-for="grid in teacherList"
+                 @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
                  :label="grid.label">
         <img slot="icon" :src="grid.src">
       </grid-item>
-      <grid-item v-if="isAdmin" v-for="grid in adminList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
+      <grid-item v-if="isAdmin" v-for="grid in adminList" @click.native="gradeShow(grid.type,grid.link,grid.label)"
+                 :key="grid.type"
                  :label="grid.label">
         <img slot="icon" :src="grid.src">
       </grid-item>
     </grid>
-    <!--<grid :cols=3 v-if="isAdmin">-->
-      <!--<grid-item v-for="grid in adminList" @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"-->
-                 <!--:label="grid.label">-->
-        <!--<img slot="icon" :src="grid.src">-->
-      <!--</grid-item>-->
-    <!--</grid>-->
     <div class="copyright">
+      <span>今日访问量：{{todayLogNum}} 网站访问总量：{{allLogNum}}</span><br/><br/>
       <span>Copyright © 2018-2019 DoubleH. All Rights Reserved.</span>
     </div>
   </div>
@@ -92,7 +83,9 @@
         adminList: adminList,
         isAdmin: false,
         isTeacher: false,
-        isFirst: true
+        isFirst: true,
+        allLogNum: 0,
+        todayLogNum: 0
       }
     },
     methods: {
@@ -144,6 +137,44 @@
             }
           }
         }
+      },
+      getVisitNum() {
+        let self = this;
+        API.getTodayLogNum()
+          .then(res => {
+            if (res.data.code >= 200 && res.data.code < 300) {
+              self.todayLogNum = res.data.data;
+            } else {
+              self.$vux.toast.show({
+                text: res.data.msg,
+                type: 'warn'
+              })
+            }
+          })
+          .catch(err => {
+            self.$vux.toast.show({
+              text: '服务器不小心抖了一下，稍后再来吧',
+              type: 'warn'
+            })
+          });
+
+        API.getAllLogNum()
+          .then(res => {
+            if (res.data.code >= 200 && res.data.code < 300) {
+              self.allLogNum = res.data.data;
+            } else {
+              self.$vux.toast.show({
+                text: res.data.msg,
+                type: 'warn'
+              })
+            }
+          })
+          .catch(err => {
+            self.$vux.toast.show({
+              text: '服务器不小心抖了一下，稍后再来吧',
+              type: 'warn'
+            })
+          });
       }
     },
     mounted() {
@@ -153,6 +184,7 @@
         sessionStorage.setItem('isFirst', '1');
         window.location.reload();
       }
+      this.getVisitNum();
     },
     components: {
       Grid,
@@ -164,7 +196,7 @@
 <style scoped>
   .copyright {
     text-align: center;
-    margin-top: 5%;
+    margin-top: 3%;
     color: #CCCCCC;
     font-size: 12px;
   }

@@ -102,6 +102,14 @@ const API = {
   updateSemester(param) {
     return axios.patchJson('/semester/updateSemester', param)
   },
+  //获取今日访问量
+  getTodayLogNum(){
+    return axios.getJson('/logInfo/getTodayLogNum')
+  },
+  //获取总访问量
+  getAllLogNum(){
+    return axios.getJson('/logInfo/getAllLogNum')
+  }
 };
 
 export default API
