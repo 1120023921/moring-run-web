@@ -103,12 +103,16 @@ const API = {
     return axios.patchJson('/semester/updateSemester', param)
   },
   //获取今日访问量
-  getTodayLogNum(){
+  getTodayLogNum() {
     return axios.getJson('/logInfo/getTodayLogNum')
   },
   //获取总访问量
-  getAllLogNum(){
+  getAllLogNum() {
     return axios.getJson('/logInfo/getAllLogNum')
+  },
+  //导出学生成绩
+  exportGrade(semesterId, fileName) {
+    return axios.downloadFile('/grade/exportGrade', {semesterId: semesterId}, fileName)
   }
 };
 

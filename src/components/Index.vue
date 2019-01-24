@@ -60,6 +60,11 @@
     type: '05',
     src: require('../assets/upload.png'),
     link: "UploadStudentInfo"
+  }, {
+    label: '成绩导出',
+    type: '08',
+    src: require('../assets/upload.png'),
+    link: "ExportGrade"
   }];
 
   const adminList = [{
