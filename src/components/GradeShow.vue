@@ -67,6 +67,9 @@
         if (itemName.indexOf("跑") > -1) {
           return grade.substring(3, 4) + '\'' + grade.substring(4, 6) + '\'\'' + grade.substring(6, 8)
         } else {
+          if (grade.indexOf("-") > -1) {
+            grade = grade.substring(grade.indexOf("-"))
+          }
           return parseFloat(grade)
         }
       },
