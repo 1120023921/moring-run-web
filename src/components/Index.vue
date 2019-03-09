@@ -77,6 +77,11 @@
     type: '07',
     src: require('../assets/upload.png'),
     link: "SemesterList"
+  }, {
+    label: '手动更新成绩',
+    type: '08',
+    src: require('../assets/upload.png'),
+    link: "UpdateGradeFromTmp"
   }];
 
   export default {

@@ -113,6 +113,10 @@ const API = {
   //导出学生成绩
   exportGrade(semesterId, fileName) {
     return axios.downloadFile('/grade/exportGrade', {semesterId: semesterId}, fileName)
+  },
+  //手动更新成绩
+  updateGradeFromTmp() {
+    return axios.get('/grade/updateGradeFromTmp', {})
   }
 };
 

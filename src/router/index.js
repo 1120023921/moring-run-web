@@ -13,6 +13,7 @@ import CarouselUpdate from '@/components/CarouselUpdate'
 import SemesterList from '@/components/SemesterList'
 import SemesterUpdate from '@/components/SemesterUpdate'
 import ExportGrade from '@/components/ExportGrade'
+import UpdateGradeFromTmp from '@/components/UpdateGradeFromTmp'
 
 Vue.use(Router)
 
@@ -82,6 +83,11 @@ export default new Router({
       path: '/exportGrade',
       name: 'ExportGrade',
       component: ExportGrade
+    },
+    {
+      path: '/updateGradeFromTmp',
+      name: 'UpdateGradeFromTmp',
+      component: UpdateGradeFromTmp
     }
   ]
 })
