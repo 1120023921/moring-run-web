@@ -110,7 +110,7 @@
     },
     computed: {
       title() {
-        return (this.searchStudentName === '' ? sessionStorage.getItem('name') : this.searchStudentName) + '考勤记录';
+        return (this.searchStudentName === '' ? sessionStorage.getItem('name') : this.searchStudentName) + this.$route.query.title;
       }
     },
     components: {
