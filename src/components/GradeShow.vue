@@ -19,7 +19,7 @@
         </thead>
         <tbody>
         <tr v-for="(item,index) in value" :key="index" is-link>
-          <td>{{item.itemName}}</td>
+          <td>{{(typeof (item.itemName)==='undefined'||item.itemName==='')?'未知':item.itemName}}</td>
           <td>{{transferName(item.grade,item.itemName)}}</td>
           <td>{{getDate(item.gradeCreateTime)}}</td>
         </tr>
@@ -64,6 +64,9 @@
           });
       },
       transferName(grade, itemName) {
+        if (typeof (itemName) === 'undefined' || itemName === null || itemName === '') {
+          return grade
+        }
         if (itemName.indexOf("跑") > -1) {
           return grade.substring(3, 4) + '\'' + grade.substring(4, 6) + '\'\'' + grade.substring(6, 8)
         } else {
