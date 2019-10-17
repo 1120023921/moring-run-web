@@ -70,6 +70,11 @@
     type: '08',
     src: require('../assets/upload.png'),
     link: "ExportGrade"
+  }, {
+      label: '视力审核',
+      type: '10',
+      src: require('../assets/upload.png'),
+      link: "ReviewEye"
   }];
 
   const adminList = [{

@@ -125,6 +125,14 @@ const API = {
   //上报/更新设备信息
   insertEye(params) {
     return axios.postJson('/eye/insertEye', params)
+  },
+  //管理员获取视力信息
+  queryEye(pageNum, pageSize, params) {
+    return axios.postJson('/eye/queryEye?pageNum=' + pageNum + '&pageSize=' + pageSize, params)
+  },
+  //管理员审核视力信息
+  reviewEye(params) {
+    return axios.postJson('/eye/reviewEye', params)
   }
 };
 

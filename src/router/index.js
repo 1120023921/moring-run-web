@@ -15,6 +15,7 @@ import SemesterUpdate from '@/components/SemesterUpdate'
 import ExportGrade from '@/components/ExportGrade'
 import UpdateGradeFromTmp from '@/components/UpdateGradeFromTmp'
 import EyeUpdate from '@/components/EyeUpdate.vue'
+import ReviewEye from '@/components/ReviewEye.vue'
 
 Vue.use(Router)
 
@@ -95,6 +96,11 @@ export default new Router({
       path: '/eyeUpdate',
       name: 'EyeUpdate',
       component: EyeUpdate
+    },
+    {
+      path: '/reviewEye',
+      name: 'ReviewEye',
+      component: ReviewEye
     }
   ]
 })
