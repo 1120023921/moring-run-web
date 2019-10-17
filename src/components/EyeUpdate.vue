@@ -60,6 +60,9 @@
                 let self = this;
                 API.getUserEye(sessionStorage.getItem('jobNumber')).then(res => {
                     if (res.data.code >= 200 && res.data.code < 300) {
+                        if(res.data.data===null){
+                            return
+                        }
                         if (res.data.data.status === 0) {
                             res.data.data.statusView = '未审核'
                         } else if (res.data.data.status === 1) {
@@ -89,35 +92,35 @@
             //更新学期
             insertEye() {
                 let self = this;
-                if (self.eye.leftNaked != 0 && !(self.eye.leftNaked >= 3.0 && self.eye.leftNaked <= 5.3)) {
+                if (parseFloat(self.eye.leftNaked) != 0 && !(parseFloat(self.eye.leftNaked) >= 3.0 && parseFloat(self.eye.leftNaked) <= 5.3)) {
                     alert('左眼视力录入范围3.0-5.3之间，若低于3.0，则填0')
                     return
                 }
-                if (self.eye.rightNaked != 0 && !(self.eye.rightNaked >= 3.0 && self.eye.rightNaked <= 5.3)) {
+                if (parseFloat(self.eye.rightNaked) != 0 && !(parseFloat(self.eye.rightNaked) >= 3.0 && parseFloat(self.eye.rightNaked) <= 5.3)) {
                     alert('右眼视力录入范围3.0-5.3之间，若低于3.0，则填0')
                     return
                 }
-                if(self.eye.leftNaked>=5.0&&self.eye.leftNaked<=5.3){
+                if(parseFloat(self.eye.leftNaked)>=5.0&&parseFloat(self.eye.leftNaked)<=5.3){
                     self.eye.leftGlass = '0 正常'
                     self.eye.leftAmetropia = '0 正常'
                 }
-                if(self.eye.rightNaked>=5.0&&self.eye.rightNaked<=5.3){
+                if(parseFloat(self.eye.rightNaked)>=5.0&&parseFloat(self.eye.rightNaked)<=5.3){
                     self.eye.rightGlass = '0 正常'
                     self.eye.rightAmetropia = '0 正常'
                 }
-                if(self.eye.leftGlass===null){
+                if(self.eye.leftGlass===null||self.eye.leftGlass===''){
                     alert('左眼串镜未填')
                     return
                 }
-                if(self.eye.rightGlass===null){
+                if(self.eye.rightGlass===null||self.eye.rightGlass===''){
                     alert('右眼串镜未填')
                     return
                 }
-                if(self.eye.leftAmetropia===null){
+                if(self.eye.leftAmetropia===null||self.eye.leftAmetropia===''){
                     alert('左眼屈光不正未填')
                     return
                 }
-                if(self.eye.rightAmetropia===null){
+                if(self.eye.rightAmetropia===null||self.eye.rightAmetropia===''){
                     alert('右眼屈光不正未填')
                     return
                 }
