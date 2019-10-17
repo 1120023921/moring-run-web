@@ -109,6 +109,7 @@
         name: "ReviewEye",
         data() {
             return {
+                tableData:[],
                 pageInfo: {
                     pageNum: 1,
                     pageSize: 10,
