@@ -117,6 +117,14 @@ const API = {
   //手动更新成绩
   updateGradeFromTmp() {
     return axios.get('/grade/updateGradeFromTmp', {})
+  },
+  //用户获取自己视力信息
+  getUserEye(jobNumber) {
+    return axios.get('/eye/getUserEye', {jobNumber: jobNumber})
+  },
+  //上报/更新设备信息
+  insertEye(params) {
+    return axios.postJson('/eye/insertEye', params)
   }
 };
 

@@ -48,6 +48,11 @@
     type: '03',
     src: require('../assets/jnkp.png'),
     link: "GradeShow"
+  },{
+      label: '视力上传',
+      type: '09',
+      src: require('../assets/upload.png'),
+      link: "EyeUpdate"
   }];
 
   const teacherList = [{
