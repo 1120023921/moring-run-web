@@ -2,8 +2,8 @@
   <div>
     <XHeader>视力上报</XHeader>
     <Group title="视力信息">
-      <XInput title="左眼裸力视力" v-model="eye.leftNaked" :disabled="eye.status===1"></XInput>
-      <XInput title="右眼裸眼视力" v-model="eye.rightNaked" :disabled="eye.status===1"></XInput>
+      <XInput title="左眼裸力视力" v-model="eye.leftNaked" :disabled="eye.status===1" placeholder="3.0-5.3"></XInput>
+      <XInput title="右眼裸眼视力" v-model="eye.rightNaked" :disabled="eye.status===1" placeholder="3.0-5.3"></XInput>
       <Group title="">
         <Selector title="左眼串镜" v-model="eye.leftGlass" :options="glassList"></Selector>
       </Group>
