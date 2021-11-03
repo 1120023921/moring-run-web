@@ -9,6 +9,12 @@
                  :label="grid.label">
         <img slot="icon" :src="grid.src">
       </grid-item>
+      <grid-item  @click.native="toUrl('http://wtjs.doublehh.cn/%E4%BF%9D%E5%81%A5%E5%85%8D%E6%B5%8B%E7%94%B3%E8%AF%B7%E8%A1%A8.doc')" label="保健免测申请表">
+        <img slot="icon" :src="require('../assets/upload.png')">
+      </grid-item>
+      <grid-item  @click.native="toUrl('http://wtjs.doublehh.cn/%E9%80%80%E5%87%BA%E4%BD%93%E8%82%B2%E4%BF%9D%E5%81%A5%E6%9A%A8%E6%AD%A3%E5%B8%B8%E6%89%A7%E8%A1%8C%E3%80%8A%E6%A0%87%E5%87%86%E3%80%8B%E7%94%B3%E8%AF%B7%E8%A1%A8.doc')" label="退出保健申请表">
+        <img slot="icon" :src="require('../assets/upload.png')">
+      </grid-item>
       <grid-item v-if="isTeacher||isAdmin" v-for="grid in teacherList"
                  @click.native="gradeShow(grid.type,grid.link,grid.label)" :key="grid.type"
                  :label="grid.label">
@@ -195,6 +201,9 @@
               type: 'warn'
             })
           });
+      },
+      toUrl(url){
+        window.location.href=url
       }
     },
     mounted() {
